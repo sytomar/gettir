@@ -1,0 +1,25 @@
+definitions:
+  RecordQuery:
+    type: object
+    properties:
+      startDate:
+        type: string
+        format: date
+        example: 'YYYY-MM-DD(2021-09-05)'
+      endDate:
+        type: string
+        format: date
+        example: "YYYY-MM-DD(2021-09-05)"
+      minCount:
+        type: integer
+        example: 1,2,3,4... 100
+        minimum: 1
+      maxCount:
+        type: integer
+        example: 1,2,3...100
+        minimum: 1
+    required:
+      - startDate
+      - endDate
+      - minCount
+      - maxCount

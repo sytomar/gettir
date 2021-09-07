@@ -1,0 +1,78 @@
+swagger: '2.0'
+info:
+  version: 1.0.0
+  title: Gettir Assignment
+  description: API documentation
+host: 'localhost:3000'
+schemes:
+  - http
+  - https
+basePath: /api/v1
+consumes:
+  - application/json
+produces:
+  - application/json
+definitions:
+  RecordQuery:
+    type: object
+    properties:
+      startDate:
+        type: string
+        format: date
+        example: YYYY-MM-DD(2021-09-05)
+      endDate:
+        type: string
+        format: date
+        example: YYYY-MM-DD(2021-09-05)
+      minCount:
+        type: integer
+        example: '1,2,3,4... 100'
+        minimum: 1
+      maxCount:
+        type: integer
+        example: '1,2,3...100'
+        minimum: 1
+    required:
+      - startDate
+      - endDate
+      - minCount
+      - maxCount
+parameters:
+  Page:
+    name: page
+    description: Page Number
+    in: query
+    type: integer
+    required: false
+    default: 1
+    minimum: 1
+    maximum: 100
+  Size:
+    name: size
+    description: Page size
+    in: query
+    type: integer
+    required: false
+    default: 10
+    minimum: 1
+    maximum: 1000
+paths:
+  /records:
+    x-swagger-router-controller: records/controller
+    post:
+      tags:
+        - Records
+      operationId: getRecords
+      summary: Get Records
+      parameters:
+        - $ref: '#/parameters/Page'
+        - $ref: '#/parameters/Size'
+        - name: body
+          in: body
+          description: body
+          required: true
+          schema:
+            $ref: '#/definitions/RecordQuery'
+      responses:
+        '200':
+          description: Success Response

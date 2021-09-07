@@ -1,0 +1,20 @@
+paths:
+  /records:
+    x-swagger-router-controller: records/controller
+    post:
+      tags:
+      - Records
+      operationId: getRecords
+      summary: Get Records
+      parameters:
+      - $ref: "#/parameters/Page"
+      - $ref: "#/parameters/Size"
+      - name: body
+        in: body
+        description: body
+        required: true
+        schema:
+          $ref: "#/definitions/RecordQuery"
+      responses:
+        200:
+          description: Success Response

@@ -1,0 +1,14 @@
+swagger: '2.0'
+info:
+  version: '1.0.0'
+  title: Gettir Assignment
+  description: API documentation
+host: 10.190.106.135:3000
+schemes:
+  - http
+  - https
+basePath: /api/v1
+consumes:
+  - application/json
+produces:
+  - application/json

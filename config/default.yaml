@@ -1,0 +1,72 @@
+host: localhost
+port: 3000
+# swagger configuration
+# values in the swagger hash are system configuration for swagger-node
+swagger:
+  fittingsDirs: [ api/fittings ]
+  defaultPipe: null
+  enableDocumentationPage: false
+  swaggerControllerPipe: swagger_controllers  # defines the standard processing pipe for controllers
+  defaultModelsExpandDepth: -1
+  # values defined in the bagpipes key are the bagpipes pipes and fittings definitions
+  # (see https://github.com/apigee-127/bagpipes)
+  bagpipes:
+    _router:
+      name: swagger_router
+      mockMode: false
+      mockControllersDirs: [ api/mocks ]
+      controllersDirs: [ controllers ]
+    _swagger_validate:
+      name: swagger_validator
+      validateResponse: true
+    # pipe for all swagger-node controllers
+    swagger_controllers:
+      - onError: json_error_handler
+      - cors
+      - swagger_params_parser
+      - swagger_security
+      - _swagger_validate
+      - express_compatibility
+      - _router
+    # pipe to serve swagger (endpoint is in swagger.yaml)
+    swagger_raw:
+      name: swagger_raw
+# log configuration
+logFile:
+  filename: api
+  maxsize: 50m
+  dirname:  logs
+  prepend: true
+  json: false
+  utc: true
+  extension: log
+  zippedArchive: true
+  datePattern: YYYY-MM-DD-
+  level: debug
+# Mongo configurations
+mongodb:
+  uri: mongodb+srv://challengeUser:WUMglwNBaydH8Yvu@challenge-xzwqd.mongodb.net/getir- case-study?retryWrites=true
+  debug: true
+  config:
+    # autoIndex: true
+    useCreateIndex: true
+    useNewUrlParser: true
+    useUnifiedTopology: true
+    poolSize: 10
+    promiseLibrary: Bluebird
+# List of api authentication  exclude
+exclude_auth_apis:
+  - /alive\/?
+  - /docs\/?.*
+  - /api-docs.*
+  # - /.* # Remove this for start authentications
+multer:
+  fileSize: 50000000 # In Byte. 50MB
+  files: 1
+  storage_path: uploads/
+  fieldNames:
+    - name: file
+    - name: fileCategory
+swaggerUI:
+  username: admin
+  password: admin
