@@ -31,7 +31,6 @@
     "pbkdf2": "^3.0.17",
     "pg": "^8.5.1",
     "pug": "2.0.0-beta11",
-    "request-promise": "^4.2.4",
     "rp": "^0.2.0",
     "string-format": "^2.0.0",
     "swagger-express-mw": "^0.7.0",
