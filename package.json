@@ -11,8 +11,6 @@
   },
   "dependencies": {
     "config": "^3.2.2",
-    "csv-parser": "^3.0.0",
-    "csv-writer": "^1.6.0",
     "debug": "~2.6.9",
     "diff": "^4.0.2",
     "express": "~4.16.1",
